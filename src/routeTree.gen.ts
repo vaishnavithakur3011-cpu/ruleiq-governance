@@ -9,38 +9,171 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignUpRouteImport } from './routes/sign-up'
+import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardTwinRouteImport } from './routes/dashboard/twin'
+import { Route as DashboardTimemachineRouteImport } from './routes/dashboard/timemachine'
+import { Route as DashboardRegistryRouteImport } from './routes/dashboard/registry'
+import { Route as DashboardGraphRouteImport } from './routes/dashboard/graph'
+import { Route as DashboardDriftRouteImport } from './routes/dashboard/drift'
+import { Route as DashboardLayoutRouteImport } from './routes/dashboard/_layout'
 
+const SignUpRoute = SignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardTwinRoute = DashboardTwinRouteImport.update({
+  id: '/dashboard/twin',
+  path: '/dashboard/twin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardTimemachineRoute = DashboardTimemachineRouteImport.update({
+  id: '/dashboard/timemachine',
+  path: '/dashboard/timemachine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRegistryRoute = DashboardRegistryRouteImport.update({
+  id: '/dashboard/registry',
+  path: '/dashboard/registry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardGraphRoute = DashboardGraphRouteImport.update({
+  id: '/dashboard/graph',
+  path: '/dashboard/graph',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDriftRoute = DashboardDriftRouteImport.update({
+  id: '/dashboard/drift',
+  path: '/dashboard/drift',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
+  id: '/dashboard/_layout',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/dashboard': typeof DashboardLayoutRoute
+  '/dashboard/drift': typeof DashboardDriftRoute
+  '/dashboard/graph': typeof DashboardGraphRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/timemachine': typeof DashboardTimemachineRoute
+  '/dashboard/twin': typeof DashboardTwinRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/drift': typeof DashboardDriftRoute
+  '/dashboard/graph': typeof DashboardGraphRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/timemachine': typeof DashboardTimemachineRoute
+  '/dashboard/twin': typeof DashboardTwinRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/dashboard/_layout': typeof DashboardLayoutRoute
+  '/dashboard/drift': typeof DashboardDriftRoute
+  '/dashboard/graph': typeof DashboardGraphRoute
+  '/dashboard/registry': typeof DashboardRegistryRoute
+  '/dashboard/timemachine': typeof DashboardTimemachineRoute
+  '/dashboard/twin': typeof DashboardTwinRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/sign-in'
+    | '/sign-up'
+    | '/dashboard'
+    | '/dashboard/drift'
+    | '/dashboard/graph'
+    | '/dashboard/registry'
+    | '/dashboard/timemachine'
+    | '/dashboard/twin'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/sign-in'
+    | '/sign-up'
+    | '/dashboard'
+    | '/dashboard/drift'
+    | '/dashboard/graph'
+    | '/dashboard/registry'
+    | '/dashboard/timemachine'
+    | '/dashboard/twin'
+  id:
+    | '__root__'
+    | '/'
+    | '/sign-in'
+    | '/sign-up'
+    | '/dashboard/_layout'
+    | '/dashboard/drift'
+    | '/dashboard/graph'
+    | '/dashboard/registry'
+    | '/dashboard/timemachine'
+    | '/dashboard/twin'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SignInRoute: typeof SignInRoute
+  SignUpRoute: typeof SignUpRoute
+  DashboardLayoutRoute: typeof DashboardLayoutRoute
+  DashboardDriftRoute: typeof DashboardDriftRoute
+  DashboardGraphRoute: typeof DashboardGraphRoute
+  DashboardRegistryRoute: typeof DashboardRegistryRoute
+  DashboardTimemachineRoute: typeof DashboardTimemachineRoute
+  DashboardTwinRoute: typeof DashboardTwinRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +181,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/twin': {
+      id: '/dashboard/twin'
+      path: '/dashboard/twin'
+      fullPath: '/dashboard/twin'
+      preLoaderRoute: typeof DashboardTwinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/timemachine': {
+      id: '/dashboard/timemachine'
+      path: '/dashboard/timemachine'
+      fullPath: '/dashboard/timemachine'
+      preLoaderRoute: typeof DashboardTimemachineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/registry': {
+      id: '/dashboard/registry'
+      path: '/dashboard/registry'
+      fullPath: '/dashboard/registry'
+      preLoaderRoute: typeof DashboardRegistryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/graph': {
+      id: '/dashboard/graph'
+      path: '/dashboard/graph'
+      fullPath: '/dashboard/graph'
+      preLoaderRoute: typeof DashboardGraphRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/drift': {
+      id: '/dashboard/drift'
+      path: '/dashboard/drift'
+      fullPath: '/dashboard/drift'
+      preLoaderRoute: typeof DashboardDriftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/_layout': {
+      id: '/dashboard/_layout'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SignInRoute: SignInRoute,
+  SignUpRoute: SignUpRoute,
+  DashboardLayoutRoute: DashboardLayoutRoute,
+  DashboardDriftRoute: DashboardDriftRoute,
+  DashboardGraphRoute: DashboardGraphRoute,
+  DashboardRegistryRoute: DashboardRegistryRoute,
+  DashboardTimemachineRoute: DashboardTimemachineRoute,
+  DashboardTwinRoute: DashboardTwinRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
