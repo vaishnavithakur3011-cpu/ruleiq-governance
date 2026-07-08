@@ -5,6 +5,7 @@ import { SplineEmbed } from "@/components/landing/SplineHero";
 import { ScrollTextOverlay } from "@/components/landing/ScrollText";
 import { StatCounter } from "@/components/landing/StatCounter";
 import { ParallaxLine } from "@/components/landing/ParallaxLine";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -15,7 +16,18 @@ const SCENE_JOURNEY = "https://prod.spline.design/NDNHBHAMxQH8ihFx/scene.splinec
 const SCENE_CUBE = "https://prod.spline.design/6564cd15-6bcb-4024-a818-424db80c0071/scene.splinecode";
 const SCENE_DISTORT = "https://prod.spline.design/Wgh2R948btMWEhCh/scene.splinecode";
 
-const BG = "#0a0a0c";
+const BG = "#080B14";
+
+function CornerCovers() {
+  return (
+    <>
+      <div style={{ position: "absolute", top: 0, left: 0, width: 250, height: 80, background: BG, zIndex: 999, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: 0, right: 0, width: 250, height: 80, background: BG, zIndex: 999, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, width: 250, height: 80, background: BG, zIndex: 999, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: 0, right: 0, width: 250, height: 80, background: BG, zIndex: 999, pointerEvents: "none" }} />
+    </>
+  );
+}
 
 function Btn({
   children,
@@ -110,14 +122,20 @@ function Landing() {
       {/* SECTION 1 — HERO */}
       <section className="relative w-screen" style={{ height: "100vh" }}>
         {/* Full-bleed background scene */}
-        <SplineEmbed scene={SCENE_HERO} />
+        <ErrorBoundary>
+          <SplineEmbed scene={SCENE_HERO} />
+        </ErrorBoundary>
+        <CornerCovers />
 
         {/* Split cube on right (desktop only) — placed BELOW overlay so it stays interactive */}
         <div
-          className="hidden lg:block absolute top-0 right-0 h-full pointer-events-auto"
+          className="hidden lg:block absolute top-0 right-0 h-full"
           style={{ width: "45%", zIndex: 5 }}
         >
-          <SplineEmbed scene={SCENE_CUBE} />
+          <ErrorBoundary>
+            <SplineEmbed scene={SCENE_CUBE} />
+          </ErrorBoundary>
+          <CornerCovers />
         </div>
 
         {/* Overlay */}
@@ -210,7 +228,10 @@ function Landing() {
 
       {/* DISTORTION / TRANSITION SPLINE */}
       <section className="relative w-screen" style={{ height: "60vh" }}>
-        <SplineEmbed scene={SCENE_DISTORT} />
+        <ErrorBoundary>
+          <SplineEmbed scene={SCENE_DISTORT} />
+        </ErrorBoundary>
+        <CornerCovers />
         <div
           className="absolute inset-0 flex items-center justify-center px-6"
           style={{ zIndex: 10, pointerEvents: "none" }}
@@ -235,7 +256,10 @@ function Landing() {
         style={{ height: "300vh" }}
       >
         <div className="sticky top-0 w-screen h-screen overflow-hidden">
-          <SplineEmbed scene={SCENE_JOURNEY} />
+          <ErrorBoundary>
+            <SplineEmbed scene={SCENE_JOURNEY} />
+          </ErrorBoundary>
+          <CornerCovers />
           <ScrollTextOverlay containerRef={journeyRef} />
         </div>
       </section>

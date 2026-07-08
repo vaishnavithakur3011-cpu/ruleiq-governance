@@ -166,3 +166,27 @@
   border-radius: 12px;
 }
 
+/* Hide Spline canvas internal text (Nova, watermarks, labels) */
+canvas ~ div,
+canvas + div,
+canvas ~ p,
+canvas ~ span,
+canvas ~ h1,
+canvas ~ h2,
+canvas ~ h3 {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+spline-viewer::part(logo),
+spline-viewer::part(watermark) {
+  display: none !important;
+}
+
+[class*="spline"] div:not([data-overlay]),
+[class*="spline"] p,
+[class*="spline"] span:not([data-overlay-text]) {
+  display: none !important;
+}
+
